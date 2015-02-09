@@ -1,41 +1,130 @@
-<?php
-class thumbnail_wizardAdminController extends thumbnail_wizard
-{
-	/**
-	 * Initialization
-	 *
-	 * @return void
-	 */
-	function init()
-	{
-	}
+<load target="filter/insert_config.xml" />
+{print_r($thumbnail_wizard,true)}<br>
+{print_r($module_info,true)}<br>
 
-	/**
-	 * Save Settings
-	 *
-	 * @return mixed
-	 */
-	function procThumbnail_wizardAdminInsertConfig() {
-		// Get the basic information
-		//$args = Context::getRequestVars();
 
-		$oModuleModel = &getModel('module');
-		$thumbnail_wizard_config = $oModuleModel->getModuleConfig('thumbnail_wizard');
-		$oModuleController = &getController('module');
+<div class="x">
 
-		$thumbnail_wizard_config->use = Context::get('use');
-		$thumbnail_wizard_config->user = Context::get('user');
-		$thumbnail_wizard_config->pass = Context::get('pass');
-		$thumbnail_wizard_config->maxsize = Context::get('maxsize');
-		$thumbnail_wizard_config->thumbsize = Context::get('thumbsize');
-		$thumbnail_wizard_config->delete = Context::get('delete');
+<div class="x_page-header">
+	<h1>
+		{$lang->thumbnail_wizard} {$lang->cmd_management}
 
-		$thumbnail_wizard_config->mid = Context::get('mid');
+		<span class="path" cond="$module_info->mid">
+			&gt; <a href="{getSiteUrl($module_info->domain,'','mid',$module_info->mid)}" target="_blank"|cond="$module=='admin'">{$module_info->mid}<block cond="$module_info->is_default=='Y'">({$lang->is_default})</block></a>
+		</span>
+		<a href="#aboutModule" data-toggle class="x_icon-question-sign">{$lang->help}</a>
+	</h1>
+	<h4>{nl2br($lang->about_thumbnail_wizard)} ver. 0.1</h4>
+</div>
+<p class="x_alert x_alert-info" id="aboutModule" hidden>일쌤이 만들었습니다.</p>
 
-		$oModuleController->insertModuleConfig('thumbnail_wizard', $thumbnail_wizard_config);
-		$this->setMessage('success_updated');	
-		//return output;
-	}
-}
-/* End of file star_rating_config.admin.controller.php */
-/* Location: ./modules/star_rating_config/star_rating_config.admin.controller.php */
+
+<ul class="x_nav x_nav-tabs">
+
+
+		<li  class="x_active"|cond="$act=='dispThumbnail_wizardAdminIndex'"><a href="{getUrl('act','dispThumbnail_wizardAdminIndex','module','admin')}">{$lang->thumbnail_wizard}</a></li>
+
+</ul>
+
+
+<div>여기
+</div>
+
+
+
+<form action="./" method="get" onsubmit="return procFilter(this, insert_config)" class="x_form-horizontal">
+	<div class="x_control-group">
+		<label class="x_control-label" for="mid">{$lang->id}</label>
+		<div class="x_controls">
+        <!--@if($module_info->mid)-->
+		<input type="hidden" name="mid" value="{$module_info->mid}"/>
+			<p class="x_help-inline">{$thumbnail_wizard->mid}</p>
+        <!--@else-->        
+        	<p class="x_help-inline">{$lang->msg_mid}</p>
+        <!--@endif-->
+
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label class="x_control-label" for="mid">{$lang->id}</label>
+		<div class="x_controls">
+              <select name="star_able_rate_view[{$val->module_srl}]">
+                  <option value="">{$lang->select}</option>
+                  <option value="Y" selected="selected"|cond="$module_config[$val->module_srl]['star_able_rate_view'] == 'Y'">투표 가능</option>
+                  <option value="N" selected="selected"|cond="$module_config[$val->module_srl]['star_able_rate_view'] == 'N'">투표 불가</option>
+              </select>
+		</div>
+	</div>
+
+
+	<div class="x_control-group">
+		<label class="x_control-label" for="user">{$lang->thumbnail_wizard_user}</label>
+		<div class="x_controls">
+			<input type="text" name="user" value="{$thumbnail_wizard->user}" placeholder="sample_user@gmail.com"/>
+			<p class="x_help-inline">{$lang->msg_user}</p>
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label class="x_control-label" for="pass">{$lang->pw}</label>
+		<div class="x_controls">
+			<input type="password" name="pass" value="{$thumbnail_wizard->pass}" placeholder="password"/>
+			<p class="x_help-inline">{$lang->msg_pw}</p>
+		</div>
+	</div>
+
+	<div class="x_control-group">
+		<label class="x_control-label" for="maxsize">{$lang->maxsize}</label>
+		<div class="x_controls">
+			<input type="text" name="maxsize" value="{$thumbnail_wizard->maxsize}" placeholder="예) 2048"/>
+			<p class="x_help-inline">{nl2br($lang->msg_maxsize)}</p>
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label class="x_control-label" for="thumbsize">{$lang->thumbsize}</label>
+		<div class="x_controls">
+			<input type="text" name="thumbsize" value="{$thumbnail_wizard->thumbsize}" placeholder="예) 288c"/>
+			<p class="x_help-inline">{nl2br($lang->msg_thumbsize)}</p>
+		</div>
+	</div>
+    <div class="x_control-group">
+        <label class="x_control-label">* 사용 여부</label>
+        <div class="x_controls">
+            <label class="x_inline">
+                <input type="radio" name="use" value="Y"  id="use_Y" checked="checked"|cond="'Y'==$thumbnail_wizard->use||$thumbnail_wizard->use==''"> {$lang->thumbnail_wizard} 활성화
+            </label>
+            <label class="x_inline">
+                <input type="radio" name="use" value="N"  id="use_N" checked="checked"|cond="'N'==$thumbnail_wizard->use"> {$lang->thumbnail_wizard} 끄기
+            </label>
+
+            <br><p class="x_help-inline">{$lang->thumbnail_wizard}의 기능을 사용할 것인지 선택하세요.</p>
+        </div>
+    </div>
+
+
+
+<!--//
+    피카사에 파일 남기기 : 문서 삭제 트리거를 건너 뛰면 됨
+-->
+    <div class="x_control-group">
+        <label class="x_control-label">썸네일 파일 저장</label>
+        <div class="x_controls">
+            <label class="x_inline">
+                <input type="radio" name="is_save" value="Y"  id="is_save_Y" checked="checked"|cond="'Y'==$thumbnail_wizard->is_save||$thumbnail_wizard->is_save==''"> xe/files/thumbnails/ 폴더에 썸네일 저장
+            </label>
+            <label class="x_inline">
+                <input type="radio" name="is_save" value="N"  id="is_save_N" checked="checked"|cond="'N'==$thumbnail_wizard->is_save"> 썸네일 원본 이미지의 URL을 그대로 사용
+            </label>
+
+            <br><p class="x_help-inline">{nl2br($lang->about_save)}</p>
+
+        </div>
+    </div>
+
+	<div class="x_clearfix btnArea">
+		<div class="x_pull-right">
+			<button class="x_btn x_btn-primary" type="submit"  accesskey="s" >{$lang->cmd_registration}</button>
+		</div>
+	</div>
+</form>
+
+</div>
