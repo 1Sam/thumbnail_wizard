@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    <grants />
+    <permissions />
+    <actions>
+        <action name="dispThumbnail_wizardAdminIndex" type="view" admin_index="true" />
+		<action name="procThumbnail_wizardAdminInsertConfig" type="controller" standalone="true" />
+    </actions>
+</module>
