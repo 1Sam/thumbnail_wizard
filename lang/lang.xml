@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<lang>
+	<item name="thumbnail_wizard">
+		<value xml:lang="ko"><![CDATA[썸네일 마법사]]></value>
+	</item>
+	<item name="about_thumbnail_wizard">
+		<value xml:lang="ko"><![CDATA[getThumbnail() 함수의 리턴값을 선처리합니다.
+		동영상 첨부시 해당 사이트의 썸네일을 자동으로 가져옵니다.
+		이는 썸네일 파일을 생성(자신의 서버에 저장) 또는 썸네일 실제 주소를 선택하여 사용할 수 있습니다.
+		
+		추가적으로 본문내에 삽입한 링크된 이미지와 파일목록으로 추가된 링크이미지도 썸네일 파일을 생성 또는 썸네일 실제 주소를 선택하여 사용할 수 있습니다.]]></value>
+	</item>
+	<item name="thumbnail_wizard">
+		<value xml:lang="ko"><![CDATA[썸네일 마법사]]></value>
+	</item>
+
+</lang>
