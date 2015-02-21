@@ -29,3 +29,46 @@ http://1sam.kr/index.php?mid=xe_tips&category=54048&document_srl=71145
 <p>2. 썸네일 마법사 모듈 설치하기</p>
 <p><br />
 </p>
+
+
+
+
+    [document_srl] => 69502
+    [uploadedFiles] => Array
+        (
+            [file_srl] => Array
+                (
+                    [0] => stdClass Object
+                        (
+                            [file_srl] => 70972
+                            [upload_target_srl] => 70971
+                            [upload_target_type] => 
+                            [sid] => 6111014986964244001#6111015545418798818
+                            [module_srl] => 2362
+                            [member_srl] => 4
+                            [download_count] => 0
+                            [direct_download] => Y
+                            [source_filename] => blooment_etc_2749.jpg
+                            [uploaded_filename] => https://lh4.googleusercontent.com/-Sqmdw8sLJUg/VM6wQtGT1uI/AAAAAAAAN3c/JgTMhcSavKI/s0/blooment_etc_2749.jpg
+                            [file_size] => 813572
+                            [comment] => 3200x4800
+                            [isvalid] => Y
+                            [regdate] => 20150202080125
+                            [ipaddress] => 121.177.172.141
+                            [file_order] => 
+                            [download_url] => ?module=file&amp;act=procFileDownload&amp;file_srl=70972&amp;sid=6111014986964244001#6111015545418798818&amp;module_srl=2362
+                        )
+        )
+    [error] => 0
+    [message] => success
+    [variables] => Array
+        (
+            [width] => 208
+            [height] => 208
+            [thumbnail_type] => crop
+            [module_srl] => 2362
+            [member_srl] => 4
+            [content] => <p><br /></p>
+
+            [uploaded_count] => 10
+        )
