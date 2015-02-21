@@ -1,0 +1,12 @@
+<filter name="remove_thumbnails" module="thumbnail_wizard" act="procThumbnail_wizardAdminRemoveThumbnails">
+    <form />
+    <response callback_func="completeAdminRemoveThumbnails">
+        <tag name="error" />
+        <tag name="message" />
+        <tag name="module" />
+        <tag name="act" />
+        <tag name="page" />
+        <tag name="module_srl" />
+        <tag name="selected_module_srl" />
+    </response>
+</filter>
