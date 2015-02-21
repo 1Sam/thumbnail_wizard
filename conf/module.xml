@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <module>
     <grants />
-    <permissions />
+    <permissions>
+		<permission action="procThumbnail_wizardAdminRemoveThumbnails" target="manager" />
+	</permissions>
     <actions>
         <action name="dispThumbnail_wizardAdminIndex" type="view" admin_index="true" />
 		<action name="procThumbnail_wizardAdminInsertConfig" type="controller" standalone="true" />
+
+        <action name="procThumbnail_wizardAdminRemoveThumbnails" type="controller" standalone="true" />
     </actions>
 </module>
