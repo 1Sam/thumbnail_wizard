@@ -1,130 +1,147 @@
 <load target="filter/insert_config.xml" />
-{print_r($thumbnail_wizard,true)}<br>
-{print_r($module_info,true)}<br>
 
+<load target="../../module/tpl/js/multi_order.js" />
+<load target="../../module/tpl/js/module_list.js" />
+<load target="../../module/tpl/js/mid.js" />
 
 <div class="x">
 
-<div class="x_page-header">
-	<h1>
-		{$lang->thumbnail_wizard} {$lang->cmd_management}
-
-		<span class="path" cond="$module_info->mid">
-			&gt; <a href="{getSiteUrl($module_info->domain,'','mid',$module_info->mid)}" target="_blank"|cond="$module=='admin'">{$module_info->mid}<block cond="$module_info->is_default=='Y'">({$lang->is_default})</block></a>
-		</span>
-		<a href="#aboutModule" data-toggle class="x_icon-question-sign">{$lang->help}</a>
-	</h1>
-	<h4>{nl2br($lang->about_thumbnail_wizard)} ver. 0.1</h4>
-</div>
-<p class="x_alert x_alert-info" id="aboutModule" hidden>일쌤이 만들었습니다.</p>
-
-
-<ul class="x_nav x_nav-tabs">
-
-
-		<li  class="x_active"|cond="$act=='dispThumbnail_wizardAdminIndex'"><a href="{getUrl('act','dispThumbnail_wizardAdminIndex','module','admin')}">{$lang->thumbnail_wizard}</a></li>
-
-</ul>
-
-
-<div>여기
-</div>
-
-
-
-<form action="./" method="get" onsubmit="return procFilter(this, insert_config)" class="x_form-horizontal">
-	<div class="x_control-group">
-		<label class="x_control-label" for="mid">{$lang->id}</label>
-		<div class="x_controls">
-        <!--@if($module_info->mid)-->
-		<input type="hidden" name="mid" value="{$module_info->mid}"/>
-			<p class="x_help-inline">{$thumbnail_wizard->mid}</p>
-        <!--@else-->        
-        	<p class="x_help-inline">{$lang->msg_mid}</p>
-        <!--@endif-->
-
-		</div>
-	</div>
-	<div class="x_control-group">
-		<label class="x_control-label" for="mid">{$lang->id}</label>
-		<div class="x_controls">
-              <select name="star_able_rate_view[{$val->module_srl}]">
-                  <option value="">{$lang->select}</option>
-                  <option value="Y" selected="selected"|cond="$module_config[$val->module_srl]['star_able_rate_view'] == 'Y'">투표 가능</option>
-                  <option value="N" selected="selected"|cond="$module_config[$val->module_srl]['star_able_rate_view'] == 'N'">투표 불가</option>
-              </select>
-		</div>
-	</div>
-
-
-	<div class="x_control-group">
-		<label class="x_control-label" for="user">{$lang->thumbnail_wizard_user}</label>
-		<div class="x_controls">
-			<input type="text" name="user" value="{$thumbnail_wizard->user}" placeholder="sample_user@gmail.com"/>
-			<p class="x_help-inline">{$lang->msg_user}</p>
-		</div>
-	</div>
-	<div class="x_control-group">
-		<label class="x_control-label" for="pass">{$lang->pw}</label>
-		<div class="x_controls">
-			<input type="password" name="pass" value="{$thumbnail_wizard->pass}" placeholder="password"/>
-			<p class="x_help-inline">{$lang->msg_pw}</p>
-		</div>
-	</div>
-
-	<div class="x_control-group">
-		<label class="x_control-label" for="maxsize">{$lang->maxsize}</label>
-		<div class="x_controls">
-			<input type="text" name="maxsize" value="{$thumbnail_wizard->maxsize}" placeholder="예) 2048"/>
-			<p class="x_help-inline">{nl2br($lang->msg_maxsize)}</p>
-		</div>
-	</div>
-	<div class="x_control-group">
-		<label class="x_control-label" for="thumbsize">{$lang->thumbsize}</label>
-		<div class="x_controls">
-			<input type="text" name="thumbsize" value="{$thumbnail_wizard->thumbsize}" placeholder="예) 288c"/>
-			<p class="x_help-inline">{nl2br($lang->msg_thumbsize)}</p>
-		</div>
-	</div>
-    <div class="x_control-group">
-        <label class="x_control-label">* 사용 여부</label>
-        <div class="x_controls">
-            <label class="x_inline">
-                <input type="radio" name="use" value="Y"  id="use_Y" checked="checked"|cond="'Y'==$thumbnail_wizard->use||$thumbnail_wizard->use==''"> {$lang->thumbnail_wizard} 활성화
-            </label>
-            <label class="x_inline">
-                <input type="radio" name="use" value="N"  id="use_N" checked="checked"|cond="'N'==$thumbnail_wizard->use"> {$lang->thumbnail_wizard} 끄기
-            </label>
-
-            <br><p class="x_help-inline">{$lang->thumbnail_wizard}의 기능을 사용할 것인지 선택하세요.</p>
-        </div>
+    <div class="x_page-header">
+        <h1>
+            {$lang->thumbnail_wizard} {$lang->cmd_management}
+    
+            <span class="path" cond="$module_info->mid">
+                &gt; <a href="{getSiteUrl($module_info->domain,'','mid',$module_info->mid)}" target="_blank"|cond="$module=='admin'">{$module_info->mid}<block cond="$module_info->is_default=='Y'">({$lang->is_default})</block></a>
+            </span>
+            <a href="#aboutModule" data-toggle class="x_icon-question-sign">{$lang->help}</a>
+        </h1>
+        <h4><p class="x_alert x_alert-success">{nl2br($lang->about_thumbnail_wizard)} ver. 0.2</p></h4>
     </div>
+    <p class="x_alert x_alert-info" id="aboutModule" hidden>일쌤이 만들었습니다.</p>
+    
+    
+    <ul class="x_nav x_nav-tabs">
+            <li  class="x_active"|cond="$act=='dispThumbnail_wizardAdminIndex'"><a href="{getUrl('act','dispThumbnail_wizardAdminIndex','module','admin')}">{$lang->thumbnail_wizard}</a></li>
+    </ul>
 
-
-
-<!--//
-    피카사에 파일 남기기 : 문서 삭제 트리거를 건너 뛰면 됨
--->
-    <div class="x_control-group">
-        <label class="x_control-label">썸네일 파일 저장</label>
-        <div class="x_controls">
-            <label class="x_inline">
-                <input type="radio" name="is_save" value="Y"  id="is_save_Y" checked="checked"|cond="'Y'==$thumbnail_wizard->is_save||$thumbnail_wizard->is_save==''"> xe/files/thumbnails/ 폴더에 썸네일 저장
-            </label>
-            <label class="x_inline">
-                <input type="radio" name="is_save" value="N"  id="is_save_N" checked="checked"|cond="'N'==$thumbnail_wizard->is_save"> 썸네일 원본 이미지의 URL을 그대로 사용
-            </label>
-
-            <br><p class="x_help-inline">{nl2br($lang->about_save)}</p>
-
+    
+    <form action="./" method="get" onsubmit="return procFilter(this, insert_config)" class="x_form-horizontal">
+        <div class="x_control-group">
+            <label class="x_control-label" for="mid">{$lang->id}</label>
+            <div class="x_controls">
+            <!--@if($module_info->mid)-->
+            <input type="hidden" name="mid" value="{$module_info->mid}"/>
+                <p class="x_help-inline">{$thumbnail_wizard->mid}</p>
+            <!--@else-->        
+                <p class="x_help-inline">{$lang->msg_mid}</p>
+            <!--@endif-->
+    
+            </div>
         </div>
-    </div>
+    
+        <div class="x_control-group">
+            <label class="x_control-label">* 활성화</label>
+            <div class="x_controls">
+                <label class="x_inline">
+                    <input type="radio" name="use" value="Y"  id="use_Y" checked="checked"|cond="'Y'==$thumbnail_wizard->use||$thumbnail_wizard->use==''"> {$lang->thumbnail_wizard} 활성화
+                </label>
+                <label class="x_inline">
+                    <input type="radio" name="use" value="N"  id="use_N" checked="checked"|cond="'N'==$thumbnail_wizard->use"> {$lang->thumbnail_wizard} 끄기
+                </label>
+                <br><p class="x_help-inline">{$lang->thumbnail_wizard}의 기능을 사용할 것인지 선택하세요.</p>
+            </div>
+        </div>
 
-	<div class="x_clearfix btnArea">
-		<div class="x_pull-right">
-			<button class="x_btn x_btn-primary" type="submit"  accesskey="s" >{$lang->cmd_registration}</button>
-		</div>
-	</div>
-</form>
+        <div class="x_control-group">
+            <label class="x_control-label">썸네일 추출 우선 순위</label>
+            <div class="x_controls">
+                <label class="x_inline">
+                    <input type="radio" name="priority" value="content"  id="priority_Y" checked="checked"|cond="'content'==$thumbnail_wizard->priority||$thumbnail_wizard->priority==''"> 본문 내용 우선
+                </label>
+                <label class="x_inline">
+                    <input type="radio" name="priority" value="file"  id="priority_N" checked="checked"|cond="'file'==$thumbnail_wizard->priority"> 첨부 파일 우선
+                </label>
+                <br><p class="x_help-inline">본문과 첨부파일 중에서 어느 이미지를 우선 검사하여 썸네일로 생성할 것인지 선택하세요.</p>
+            </div>
+        </div>
+
+        <div class="x_control-group moduleSearch moduleSearch1 modulefinder xe-module-finder">
+            <label class="x_control-label" for="save_module_srls">썸네일을 파일로 저장합니다.<br>적용할 게시판을 선택하세요.</label>
+            <div class="x_controls">
+                <input type="hidden" name="save_module_srls" value="{$thumbnail_wizard->save_module_srls}" />
+                <select class="modulelist_selected" size="8" multiple="multiple" style="vertical-align:top;margin-bottom:5px">
+                                
+                </select>
+                <p class="x_help-inline">xe/files/thumbnails/ 폴더에 .jpg 형식으로 썸네일이 저장됩니다.<br> 설정을 변경한 경우에는 썸네일을 삭제하여 썸네일이 재생성되로록 하는 것이 좋습니다. </p>
+                <br>
+                <a href="#" id="__module_srl_list_save_module_srls" class="x_btn moduleTrigger" data-multiple="true" style="margin:0 -5px 0 0;border-radius:2px 0 0 2px">{$lang->cmd_add}</a>
+                <button type="button" class="x_btn modulelist_up" style="margin:0 -5px 0 0;border-radius:0">{$lang->cmd_move_up}</button>
+                <button type="button" class="x_btn modulelist_down" style="margin:0 -5px 0 0;border-radius:0">{$lang->cmd_move_down}</button>
+                <button type="button" class="x_btn modulelist_del" style="border-radius:0 2px 2px 0">{$lang->cmd_delete}</button>
+                <script>
+                    xe.registerApp(new xe.ModuleListManager('save_module_srls'));
+                </script>
+    
+     <a class="x_btn x_btn-danger" href="javascript:void(0)" onclick="removethumbnails();return false;">썸네일 모두 삭제</a>
+    
+            </div>
+    
+        </div>
+    
+        <div class="x_control-group moduleSearch moduleSearch1 modulefinder xe-module-finder">
+            <label class="x_control-label" for="url_module_srls">썸네일을 URL 그대로 이용합니다.<br>적용할 게시판을 선택하세요.</label>
+            <div class="x_controls">
+                <input type="hidden" name="url_module_srls" value="{$thumbnail_wizard->url_module_srls}" />
+                <select class="modulelist_selected" size="8" multiple="multiple" style="vertical-align:top;margin-bottom:5px">
+                
+                </select>
+                <p class="x_help-inline">썸네일을 파일로 저장하지 않고 원본 이미지의 URL을 그대로 사용합니다.<br> 리사이즈가 되지 않는 것이 단점입니다.<br> * 구글 Picasa 이미지는 게시판에서 설정한 썸네일 크기로 리사이즈가 됩니다.</p>
+                <br>
+                <a href="#" id="__module_srl_list_url_module_srls" class="x_btn moduleTrigger" data-multiple="true" style="margin:0 -5px 0 0;border-radius:2px 0 0 2px">{$lang->cmd_add}</a>
+                <button type="button" class="x_btn modulelist_up" style="margin:0 -5px 0 0;border-radius:0">{$lang->cmd_move_up}</button>
+                <button type="button" class="x_btn modulelist_down" style="margin:0 -5px 0 0;border-radius:0">{$lang->cmd_move_down}</button>
+                <button type="button" class="x_btn modulelist_del" style="border-radius:0 2px 2px 0">{$lang->cmd_delete}</button>
+                <script>
+                    xe.registerApp(new xe.ModuleListManager('url_module_srls'));
+                </script>
+            </div>
+        </div>
+    
+        <div class="x_control-group moduleSearch moduleSearch1 modulefinder xe-module-finder">
+    
+            <label class="x_control-label" for="thumbnail_ratio_val">{$lang->ratio_val}</label>
+            <div class="x_controls">
+                  <select name="ratio_val">
+                      <option value="">{$lang->select}</option>
+                      <option value="0.75" selected="selected"|cond="$thumbnail_wizard->ratio_val == '0.75'"> 4 : 3 </option>
+                      <option value="0.5625" selected="selected"|cond="$thumbnail_wizard->ratio_val == '0.5625'"> 16 : 9 </option>
+                  </select>
+            </div>
+    
+    
+            <label class="x_control-label" for="ratio_module_srls">위에서 선택한 이미지 비율값을<br>적용할 게시판을 선택하세요.</label>
+            <div class="x_controls">
+                <input type="hidden" name="ratio_module_srls" value="{$thumbnail_wizard->ratio_module_srls}" />
+                <select class="modulelist_selected" size="8" multiple="multiple" style="vertical-align:top;margin-bottom:5px">
+                                
+                </select>
+                <p class="x_help-inline">썸네일을 파일로 저장하는 게시판에만 적용됩니다.<br> 구글 Picasa 이미지는 저장여부와 상관없이 적용됩니다.</p>
+                <br>
+                <a href="#" id="__module_srl_list_ratio_module_srls" class="x_btn moduleTrigger" data-multiple="true" style="margin:0 -5px 0 0;border-radius:2px 0 0 2px">{$lang->cmd_add}</a>
+                <button type="button" class="x_btn modulelist_up" style="margin:0 -5px 0 0;border-radius:0">{$lang->cmd_move_up}</button>
+                <button type="button" class="x_btn modulelist_down" style="margin:0 -5px 0 0;border-radius:0">{$lang->cmd_move_down}</button>
+                <button type="button" class="x_btn modulelist_del" style="border-radius:0 2px 2px 0">{$lang->cmd_delete}</button>
+                <script>
+                    xe.registerApp(new xe.ModuleListManager('ratio_module_srls'));
+                </script>
+            </div>
+        </div>
+
+        <div class="x_clearfix btnArea">
+            <div class="x_pull-right">
+                <button class="x_btn x_btn-primary" type="submit"  accesskey="s" >{$lang->cmd_registration}</button>
+            </div>
+        </div>
+    </form>
 
 </div>
