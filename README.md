@@ -22,8 +22,19 @@ http://1sam.kr/index.php?mid=xe_tips&category=54048&document_srl=71145
 <p><br /></p>
 <p>&nbsp;&nbsp;// Return false if neither attachement nor image files in the document<br />&nbsp;&nbsp;if(!$this-&gt;get('uploaded_count') &amp;&amp; !preg_match("!&lt;img!is", $this-&gt;get('content'))) return;<br /></p>
 </blockquote><p><br /></p>
-<p>
 
+<p>간략화</p>
+<p>
+		//* 모듈을 위해 추가된 트리거 시작 *//
+		//* 1Sam 이 썸네일 마법사 모듈을 위해 추가한 트리거입니다.
+		$this->adds( array('width' => $width, 'height' => $height, 'thumbnail_type' => $thumbnail_type));
+		// trigger 호출 (before)
+		$output = ModuleHandler::triggerCall('document.getThumbnail', 'before', $this);
+		if($this->variables['thumbnail_url']) return $this->variables['thumbnail_url'];
+		//* 모듈을 위해 추가된 트리거 끝 *//
+</p>
+
+<p>
 </p>
 <p><br /></p>
 <p>2. 썸네일 마법사 모듈 설치하기</p>
