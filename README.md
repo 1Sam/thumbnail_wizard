@@ -25,13 +25,13 @@ http://1sam.kr/index.php?mid=xe_tips&category=54048&document_srl=71145
 
 <p>간략화</p>
 <p>
-		//* 모듈을 위해 추가된 트리거 시작 *//
-		//* 1Sam 이 썸네일 마법사 모듈을 위해 추가한 트리거입니다.
-		$this->adds( array('width' => $width, 'height' => $height, 'thumbnail_type' => $thumbnail_type));
-		// trigger 호출 (before)
-		$output = ModuleHandler::triggerCall('document.getThumbnail', 'before', $this);
-		if($this->variables['thumbnail_url']) return $this->variables['thumbnail_url'];
-		//* 모듈을 위해 추가된 트리거 끝 *//
+		//* 모듈을 위해 추가된 트리거 시작 *//<br />
+		//* 1Sam 이 썸네일 마법사 모듈을 위해 추가한 트리거입니다.<br />
+		$this->adds( array('width' => $width, 'height' => $height, 'thumbnail_type' => $thumbnail_type));<br />
+		// trigger 호출 (before)<br />
+		$output = ModuleHandler::triggerCall('document.getThumbnail', 'before', $this);<br />
+		if($this->variables['thumbnail_url']) return $this->variables['thumbnail_url'];<br />
+		//* 모듈을 위해 추가된 트리거 끝 *//<br />
 </p>
 
 <p>
